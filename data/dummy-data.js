@@ -1,5 +1,6 @@
 import Classroom from '../models/Classroom';
 import Child from '../models/Child'
+import Teacher from '../models/Teacher'
 
 export const AVATARS = [
     require('../assets/images/avataaars0.png'),
@@ -35,4 +36,10 @@ export const ROOMS = [
     new Classroom('2', 'Room 3', chidren.slice(4,6)),
     new Classroom('3', 'Room 4', chidren.slice(6,8)),
     new Classroom('4', 'Room 5', chidren.slice(8,10)),
+];
+
+export const TEACHERS = [
+    new Teacher('0', 'Carla Souza', ['0', '1'], true, AVATARS[0]),
+    new Teacher('1', 'Roberto Almeida', ['2'], false, AVATARS[1]),
+    new Teacher('2', 'Renato Pereira', ['3', '4'], false, AVATARS[2]),
 ];

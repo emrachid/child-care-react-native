@@ -14,6 +14,7 @@ const RoomScreen = props => {
 
     const dispatch = useDispatch();
 
+    const teacher = props.navigation.getParam('teacher');
     const roomId = props.navigation.getParam('roomId');
     const rooms = useSelector(state => state.center.rooms);
     const roomData = rooms.find(roomItem => roomItem.id === roomId);
@@ -48,7 +49,7 @@ const RoomScreen = props => {
                 renderItem={renderChildItem}
                 numColumns={1}/>
             <ChangeRoomModal
-                data={rooms}
+                data={rooms.filter(room => teacher.isAccessAllowed(room.id))}
                 isVisible={changeRoomModalVisible}
                 onClose={() => console.log('ChangeRoomModal closed')}
                 onCancel={() => setChangeRoomModalVisible(false)}

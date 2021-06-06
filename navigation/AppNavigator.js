@@ -5,8 +5,15 @@ import Colors from '../constants/Colors';
 
 import CenterScreen from '../screens/CenterScreen'
 import RoomScreen from '../screens/RoomScreen';
+import TeachersScreen from '../screens/TeachersScreen';
 
 const AppNavigator = createStackNavigator({
+    Teachers: {
+        screen: TeachersScreen,
+        navigationOptions: {
+            headerTitle: 'Teachers'
+        },
+    },
     Center: {
         screen: CenterScreen,
         navigationOptions: {

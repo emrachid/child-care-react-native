@@ -1,10 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { FlatList, View, Text, StyleSheet } from 'react-native';
+import TeacherItem from '../components/TeacherItem';
+import { TEACHERS } from '../data/dummy-data';
 
 const TeachersScreen = props => {
+
+    const renderTeacherItem = itemData => {
+        return (
+            <TeacherItem
+                fullName={itemData.item.fullName}
+                avatarSource={itemData.item.avatarSource}
+                onSelect={ () => props.navigation.navigate('Center', { teacher: itemData.item }) }
+            />
+        );
+    };
+
     return (
         <View style={styles.screen}>
-            <Text>The Teachers Screen!</Text>
+            <FlatList
+                style={{width: '100%'}}
+                data={TEACHERS}
+                renderItem={renderTeacherItem}
+                numColumns={1}/>
         </View>
     );
 };

@@ -8,6 +8,7 @@ import { fetchRooms } from '../store/actions/rooms';
 const CenterScreen = props => {
     const rooms = useSelector(state => state.center.rooms);
     const dispatch = useDispatch();
+    const teacher = props.navigation.getParam('teacher');
 
     // load data from server
     useEffect(() => {
@@ -18,7 +19,14 @@ const CenterScreen = props => {
         return <RoomGridTile
             title={itemData.item.name}
             color={Colors.secondColor}
-            onSelect={ () => props.navigation.navigate('Room', { roomId: itemData.item.id, roomName: itemData.item.name }) }
+            onSelect={ () => {
+                console.log(teacher);
+                if (teacher.isAccessAllowed(itemData.item.id)) {
+                    props.navigation.navigate('Room', { roomId: itemData.item.id, roomName: itemData.item.name, teacher })
+                } else {
+                    alert('Permission denied: You cannot access this room');
+                }
+            } }
         />
     };
 
